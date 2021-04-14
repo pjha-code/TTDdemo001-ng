@@ -1,0 +1,57 @@
+<div class="container-fluid app-nav">
+
+    <div class="row">
+        <div class="col-sm-7">
+            <div>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+
+                    <div class="form-group">
+                        <label for="file">File:</label>
+                        <input formControlName="file" type="file" class="form-control" id="file"
+                            (focusout)="onFocusOut($event)">
+
+
+                        <div class="progress" [@progressBar]="prgSts==='ul'?'uploading':'uploaded'">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"
+                                [style.width]="progressPercent">
+                                {{progressPercent}}
+                            </div>
+
+                        </div>
+
+                        <div class="alert alert-danger"
+                            *ngIf="((!file?.errors?.valid) && isTouched)|| !isFileSizeCorrect">
+                            <p *ngIf="file?.errors?.isNotCSV">{{file?.errors?.message}}</p>
+                            <p *ngIf="file?.errors?.required">{{file?.errors?.message}}</p>
+                            <p *ngIf="!isFileSizeCorrect">File cannot be greater than 500KB</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" [disabled]="(!file?.errors?.valid)|| (!isFileSizeCorrect)"
+                        type="submit">PATCH</button>
+                </form>
+            </div>
+            <br>
+
+        </div>
+        <div class="col-sm-5">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-6">Response</h1>
+
+                    <hr class="my-4">
+                    <p><button class="btn btn-sm btn-outline-primary">Copy</button></p>
+                    <p class="lead">
+                        <code>
+                            <textarea  class="form-control rounded-0" disabled id="exampleFormControlTextarea1" rows="10">
+                                
+                            </textarea>
+                            
+                        </code>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

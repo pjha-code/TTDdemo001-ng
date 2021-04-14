@@ -10,24 +10,31 @@ export class InvoiceResourcesComponent implements OnInit {
 
   private invoiceResources: any = [
     {
-      service: "Get All",
-      message: "Gets all the invoice",
-      method:'GET',
-      url:'/invoice'
+      service: 'Get All',
+      message: 'Gets all the invoice',
+      method: 'GET',
+      url: '/invoice'
 
     },
     {
-      service: "Get Invoice",
-      message: "Get invoice for provided invoice number",
-      method:'GET',
-      url:'/invoice'
+      service: 'Get Invoice',
+      message: 'Get invoice for provided invoice number',
+      method: 'GET',
+      url: '/invoice'
 
     },
     {
-      service: "Validate Invoice",
-      message: "Provide validation for invoice",
-      method:'POST',
-      url:'/invoice/validateInvoice'
+      service: 'Validate Invoice',
+      message: 'Provide validation for invoice',
+      method: 'POST',
+      url: '/invoice/validateInvoice'
+
+    },
+    {
+      service: 'Patch Invoice',
+      message: 'Patch Invoice',
+      method: 'POST',
+      url: '/invoice/patch'
 
     }
   ];
@@ -40,7 +47,7 @@ export class InvoiceResourcesComponent implements OnInit {
   }
 
   get resources() {
-    return this.invoiceResources
+    return this.invoiceResources;
   }
 
 }

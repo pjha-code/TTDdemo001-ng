@@ -7,7 +7,7 @@
             <div class="card-body">
 
                 <p class="card-text">{{res.message}}</p>
-                <a href="#" class="btn" 
+                <a class="btn" 
                     [class.btn-primary]='res.method=="GET"'
                     [class.btn-success]='res.method=="POST"'
                     [routerLink]='res.url'

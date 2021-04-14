@@ -11,14 +11,14 @@ export class ValidateInvoiceComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
 
   resp = `
   {
     responseCode:200,
     responseStatus:OK
   }
-  `
+  `;
+
+  ngOnInit(): void {
+  }
 }
