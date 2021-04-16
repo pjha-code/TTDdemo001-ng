@@ -1,0 +1,48 @@
+<div class="container">
+    <br><br><br>
+
+
+
+    <h1>Invoice</h1>
+    <hr>
+    <div class="container" *ngIf="invoiceNumber==null; else invoiceDetail">
+
+        <form [formGroup]="form">
+            
+            <div class="form-group">
+                <label for="invoiceNumber">Invoice Number: </label>
+                <input type="text" formControlName="invoiceNumber" class="form-control" id="invoiceNumber" aria-describedby="invoiceNumber"
+                    placeholder="Enter Invoice Number" (keyup)="onKeyUp(invNum)" #invNum>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="onSubmit()">Submit</button>
+        </form>
+    </div>
+
+
+    <ng-template #invoiceDetail>
+        <h4>Invoice Number : {{invoiceNumber}}</h4>
+
+        <div class="card" *ngFor="let r of resp">
+            <div class="card-header">
+                DocumentSequence: {{r.DocumentSequence}}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p><b>Description: </b>{{r.Description}}</p>
+                    <p><b>InvoiceSource: </b>{{r.InvoiceSource}}</p>
+                    <p><b>LegalEntity: </b>{{r.LegalEntity}}</p>
+                    <p><b>Party: </b>{{r.Party}}</p>
+                    <p><b>InvoiceGroup: </b>{{r.InvoiceGroup}}</p>
+                    <p><b>InvoiceDate: </b>{{r.InvoiceDate}}</p>
+                    <p><b>InvoiceCurrency: </b>{{r.InvoiceCurrency}}</p>
+                    <p><b>DocumentCategory: </b>{{r.DocumentCategory}}</p>
+                    <footer class="blockquote-footer">Product by <cite title="Source Title">CTR</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </ng-template>
+    <br><br><br>
+</div>

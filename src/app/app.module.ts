@@ -13,6 +13,9 @@ import { RouterModule } from '@angular/router';
 import { PatchInvoiceComponent } from './invoice/patch-invoice/patch-invoice.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { InvoiceResourceService } from './invoice/invoice-resource.service';
+import { InvoiceListViewerComponent } from './invoice/invoice-list-viewer/invoice-list-viewer.component';
+import { SingleInvoiceComponent } from './invoice/single-invoice/single-invoice.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,19 @@ import { HttpClientModule } from '@angular/common/http';
     InvoiceResourcesComponent,
     ValidateInvoiceComponent,
     JumbotronComponent,
-    PatchInvoiceComponent
+    PatchInvoiceComponent,
+    InvoiceListViewerComponent,
+    SingleInvoiceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: 'invoice/validateInvoice', component: ValidateInvoiceComponent },
-      { path: 'invoice/patch', component: PatchInvoiceComponent },
+      { path: 'invoice/updateInvoice', component: PatchInvoiceComponent },
+      { path: 'invoice/getAll', component: InvoiceListViewerComponent },
+      { path: 'invoice/getInvoice/:InvoiceNumber', component: SingleInvoiceComponent },
+      { path: 'invoice/getInvoice', component: SingleInvoiceComponent },
       { path: 'invoice', component: InvoiceResourcesComponent },
       { path: '', component: JumbotronComponent }
     ]),
@@ -38,7 +46,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    InvoiceResourceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

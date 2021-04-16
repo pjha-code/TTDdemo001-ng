@@ -1,0 +1,21 @@
+<br><br><br>
+<div class="container">
+
+    <h1>List of Invoices</h1>
+    <hr>
+    <div class="card" *ngFor="let invoice of invoices">
+        <div class="card-header">
+            <b>InvoiceNumber:</b> {{invoice.InvoiceNumber}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Details</h5>
+            <p class="card-text">
+                <b>CreationDate: </b>{{invoice.CreationDate}}<br>
+                <b>CreatedBy: </b>{{invoice.CreatedBy}}<br>
+            </p>
+            <a [routerLink]="['/invoice/getInvoice',invoice.InvoiceNumber]" class="btn btn-primary">Open</a>
+        </div>
+    </div>
+
+</div>
+<br><br><br>
