@@ -1,13 +1,13 @@
 <br><br><br>
-<div class="container">
+<div class="container text-center">
 
-    <h1>List of Invoices</h1>
+    <h1>SYSTEM - INVOICES</h1>
     <hr>
     <div class="card" *ngFor="let invoice of invoices">
-        <div class="card-header">
+        <div class="card-header text-right">
             <b>InvoiceNumber:</b> {{invoice.InvoiceNumber}}
         </div>
-        <div class="card-body">
+        <div class="card-body text-left">
             <h5 class="card-title">Details</h5>
             <p class="card-text">
                 <b>CreationDate: </b>{{invoice.CreationDate}}<br>

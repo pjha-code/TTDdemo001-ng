@@ -1,31 +1,28 @@
-<div class="container">
+<div class="container text-center">
     <br><br><br>
-
-
-
     <h1>Invoice</h1>
     <hr>
-    <div class="container" *ngIf="invoiceNumber==null; else invoiceDetail">
+    <div class="container">
 
         <form [formGroup]="form">
-            
+
             <div class="form-group">
                 <label for="invoiceNumber">Invoice Number: </label>
-                <input type="text" formControlName="invoiceNumber" class="form-control" id="invoiceNumber" aria-describedby="invoiceNumber"
-                    placeholder="Enter Invoice Number" (keyup)="onKeyUp(invNum)" #invNum>
+                <input type="text" formControlName="invoiceNumber" class="form-control" id="invoiceNumber"
+                    aria-describedby="invoiceNumber" placeholder="Enter Invoice Number" (keyup)="onKeyUp(invNum)"
+                    #invNum>
 
             </div>
 
             <button type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="onSubmit()">Submit</button>
         </form>
     </div>
-
-
-    <ng-template #invoiceDetail>
+    <hr>
+    <div class="container text-left" *ngIf="invoiceNumber!=null">
         <h4>Invoice Number : {{invoiceNumber}}</h4>
 
         <div class="card" *ngFor="let r of resp">
-            <div class="card-header">
+            <div class="card-header text-right">
                 DocumentSequence: {{r.DocumentSequence}}
             </div>
             <div class="card-body">
@@ -43,6 +40,6 @@
                 </blockquote>
             </div>
         </div>
-    </ng-template>
+    </div>
     <br><br><br>
 </div>
