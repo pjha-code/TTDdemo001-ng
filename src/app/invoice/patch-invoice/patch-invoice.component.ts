@@ -24,7 +24,10 @@ export class PatchInvoiceComponent {
   private _progress: any;
   private _progress_percent!: String;
   prgSts: string = "ul";
-  resp: any;
+  // private _resp: any[] = [];
+  private _headers: any[] = [];
+  private _validRecorList: any[] = [];
+  private _invalidRecorList: any[] = [];
 
   form: FormGroup = new FormGroup({
     file: new FormControl('', FileValidators.fileExtensionCheck)
@@ -38,16 +41,32 @@ export class PatchInvoiceComponent {
     return this._isFileSizeCorrect;
   }
 
-  get file() {
-    return this.form.get('file');
-  }
-
   get progress() {
     return this._progress;
   }
 
   get progressPercent() {
     return this._progress_percent;
+  }
+
+  // get resp() {
+  //   return this._resp;
+  // }
+
+  get file() {
+    return this.form.get('file');
+  }
+
+  get headers() {
+    return this._headers;
+  }
+
+  get validRecorList() {
+    return this._validRecorList;
+  }
+
+  get invalidRecorList() {
+    return this._invalidRecorList;
   }
 
   onFocusOut(event: any) {
@@ -73,14 +92,32 @@ export class PatchInvoiceComponent {
     this.service.updateInvoice(formData).subscribe((event: HttpEvent<any> | any) => {
       const type = event.type;
 
-      console.log(event);
+      // console.log(event);
       if (type === HttpEventType.UploadProgress) {
+
         this._progress = Math.round(event.total / event.loaded * 100);
         this._progress_percent = this._progress + '%';
         this.prgSts = 'ul';
+
       } else if (type === HttpEventType.Response) {
+
         this.prgSts = 'u';
-        this.resp = event.body;
+        let tempRespArr: any[] = (JSON.parse(JSON.stringify(event.body))).response;
+
+
+        tempRespArr.forEach((element, index) => {
+          if (index == 0)
+            this._headers = element.response
+          else if (element.valid === true)
+            this._validRecorList.push(element);
+          else
+            this._invalidRecorList.push(element)
+        });
+        console.log(this._headers)
+        console.log(this._invalidRecorList)
+        console.log(this._validRecorList)
+
+        // this._headers = this._resp[0].response;
       }
     });
   }
