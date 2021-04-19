@@ -22,7 +22,7 @@
     </div>
     <hr>
     <div class="container" *ngIf="resp.length==0 && displaySpinner">
-        <mat-spinner class="my-mat-spinner" color="warm"></mat-spinner>
+        <mat-spinner class="my-mat-spinner" [color]="'warn'"></mat-spinner>
     </div>
     <div class="container text-left" *ngIf="invoiceNumber!=null">
         <div class="card md-body-1" *ngFor="let r of resp">
