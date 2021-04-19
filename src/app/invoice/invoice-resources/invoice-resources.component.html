@@ -1,21 +1,18 @@
 <div class="container">
     <br><br><br>
     <div class="row app-nav" *ngFor="let resArr of resources">
-        <div class="col-sm-4" *ngFor="let res of resArr">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">{{res.service}}</h5>
-                </div>
-                <div class="card-body">
-
+        <div class="col-sm-4 mat-card-row" *ngFor="let res of resArr">
+            <mat-card>
+                <mat-card-title>{{res.service}}</mat-card-title>
+                <mat-card-content>
                     <p class="card-text">{{res.message}}</p>
-                    <a class="btn" [class.btn-primary]='res.method=="GET"' [class.btn-success]='res.method=="POST"'
-                        [routerLink]='res.url'>
+                    <a class="btn mat-raised-button btn-sm" [class.btn-primary]='res.method=="GET"'
+                        [class.btn-success]='res.method=="POST"' [routerLink]='res.url'>
                         {{res.method}}
                     </a>
-                    
-                </div>
-            </div>
+                </mat-card-content>
+            </mat-card>
+
         </div>
     </div>
     <br><br><br>

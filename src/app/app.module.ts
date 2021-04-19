@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { InvoiceResourceService } from './invoice/invoice-resource.service';
 import { InvoiceListViewerComponent } from './invoice/invoice-list-viewer/invoice-list-viewer.component';
 import { SingleInvoiceComponent } from './invoice/single-invoice/single-invoice.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { SingleInvoiceComponent } from './invoice/single-invoice/single-invoice.
     ]),
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [
     InvoiceResourceService

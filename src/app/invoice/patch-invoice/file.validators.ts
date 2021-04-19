@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class FileValidators {
     static fileExtensionCheck(control: AbstractControl): ValidationErrors | null {
-        console.log(control);
+        // console.log(control);
         const completeFileName = control.value as String;
         let resp = null;
         if (completeFileName != '') {

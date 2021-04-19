@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { InvoiceResourceService } from '../invoice-resource.service';
 
 @Component({
@@ -6,23 +7,31 @@ import { InvoiceResourceService } from '../invoice-resource.service';
   templateUrl: './invoice-list-viewer.component.html',
   styleUrls: ['./invoice-list-viewer.component.css']
 })
-export class InvoiceListViewerComponent implements OnInit {
+export class InvoiceListViewerComponent implements OnInit, OnDestroy {
 
   private invoiceList: any[] = [];
-  x: any;
-  constructor(private service: InvoiceResourceService) {
-    service.getAllInvoice().subscribe(data => {
-      this.invoiceList = JSON.parse(JSON.stringify(data));
-    });
+  private _displaySpinner = true;
+  private subscription!: Subscription;
 
-  }
+  constructor(private service: InvoiceResourceService) { }
 
   get invoices() {
     return this.invoiceList;
   }
 
-  ngOnInit(): void {
+  get displaySpinner() {
+    return this._displaySpinner;
+  }
 
+  ngOnInit(): void {
+    this.subscription = this.service.getAllInvoice().subscribe(data => {
+      this._displaySpinner = false;
+      this.invoiceList = JSON.parse(JSON.stringify(data));
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

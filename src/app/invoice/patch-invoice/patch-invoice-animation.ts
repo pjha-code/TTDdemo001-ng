@@ -13,7 +13,7 @@ export let progressBar = trigger('progressBar', [
         style({
             opacity: 1
         }),
-        animate(60000)
+        animate(10000)
     ]),
     transition('uploaded=>uploading', [
         style({
@@ -22,3 +22,21 @@ export let progressBar = trigger('progressBar', [
         animate(1000)
     ]),
 ]);
+/*
+export let test = trigger("test", [
+    state("s1", style({
+        backgroundColor: 'yellow'
+    })),
+    state("s2", style({
+        backgroundColor: 'blue',
+        transform: 'rotate(3600deg) translateX(500px)',
+
+    })),
+    transition('s1=>s2', [
+        animate(3000)
+    ]),
+    transition('s2=>s1', [
+        animate(3000)
+    ])
+]);
+*/

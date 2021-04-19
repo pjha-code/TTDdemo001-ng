@@ -1,13 +1,11 @@
 <div class="container app-nav">
     <br><br>
     <div class="container-fluid text-center">
-        <h1>UPDATE - INVOICE</h1>
-        <hr>
+        <h1 class="mat-display-1">UPDATE - INVOICE</h1>
+        <!-- <hr> -->
     </div>
     <div class="row">
         <div class="col-sm-12 col-lg-4">
-
-
             <div>
                 <form [formGroup]="form" (ngSubmit)="submit()">
 
@@ -16,12 +14,12 @@
 
                             <div class="col-sm-12 col-lg-12">
                                 <label for="file">
-                                    <h5>File:</h5>
+                                    <h3>File:</h3>
                                 </label>
                                 <input aria-disabled="false" formControlName="file" type="file" class="form-control"
                                     id="file" (focusout)="onFocusOut($event)" #fileInput>
 
-                                <div class="progress" [@progressBar]="prgSts==='ul'?'uploading':'uploaded'">
+                                <div class="progress" [@progressBar]="prgSts==='upldg'?'uploading':'uploaded'">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar"
                                         aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"
                                         [style.width]="progressPercent">
@@ -29,10 +27,11 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-primary btn-block"
+                                <button class="btn btn-primary btn-block mat-raised-button"
                                     [disabled]="(!file?.errors?.valid)|| (!isFileSizeCorrect)" type="submit">
-                                    <h5>Update</h5>
+                                    Update
                                 </button>
+
                             </div>
 
                         </div>
@@ -46,13 +45,24 @@
                     </div>
 
                 </form>
+                <!-- <button class="btn btn-danger" (click)="toggle()">
+                    Toggle
+                </button>
+                <div class="container" [@test]="testStr=='s1'?'s1':'s2'">
+                    <h1>test</h1>
+                </div> -->
             </div>
             <br>
 
         </div>
         <div class="col-sm-12 col-lg-8">
+            <h3 class="mat-h2 mat-title">Response:</h3>
 
-            <table class="table table-responsive" [hidden]="validRecorList.length==0">
+            <div class="col-sm-12"
+                [style.display]="(validRecorList.length==0||invalidRecorList.length==0)&&displaySpinner?'block':'none'">
+                <mat-spinner [color]="'warn'" class="my-mat-spinner"></mat-spinner>
+            </div>
+            <table class="table table-responsive" [hidden]="validRecorList.length==0&&invalidRecorList.length==0">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

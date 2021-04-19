@@ -1,32 +1,35 @@
 <div class="container text-center">
     <br><br><br>
-    <h1>Invoice</h1>
-    <hr>
-    <div class="container">
+    <h1 class="mat-display-1">Invoice</h1>
 
-        <form [formGroup]="form">
+    <div class="container text-left">
 
-            <div class="form-group">
-                <label for="invoiceNumber">Invoice Number: </label>
-                <input type="text" formControlName="invoiceNumber" class="form-control" id="invoiceNumber"
-                    aria-describedby="invoiceNumber" placeholder="Enter Invoice Number" (keyup)="onKeyUp(invNum)"
-                    #invNum>
+        <div class="col-sm-12 col-lg-3">
+            <form [formGroup]="form">
 
-            </div>
+                <div class="form-group">
+                    <label for="invoiceNumber">Enter Invoice Number: </label>
+                    <input type="text" formControlName="invoiceNumber" class="form-control" id="invoiceNumber"
+                        aria-describedby="invoiceNumber" placeholder="Enter Invoice Number" (keyup)="onKeyUp(invNum)"
+                        #invNum>
 
-            <button type="submit" class="btn btn-primary" [disabled]="isDisabled" (click)="onSubmit()">Submit</button>
-        </form>
+                </div>
+
+                <button type="submit" class="btn btn-primary mat-raised-button" [disabled]="isDisabled"
+                    (click)="onSubmit()">Submit</button>
+            </form>
+        </div>
     </div>
     <hr>
+    <div class="container" *ngIf="resp.length==0 && displaySpinner">
+        <mat-spinner class="my-mat-spinner" color="warm"></mat-spinner>
+    </div>
     <div class="container text-left" *ngIf="invoiceNumber!=null">
-        <h4>Invoice Number : {{invoiceNumber}}</h4>
-
-        <div class="card" *ngFor="let r of resp">
-            <div class="card-header text-right">
-                DocumentSequence: {{r.DocumentSequence}}
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
+        <div class="card md-body-1" *ngFor="let r of resp">
+            <mat-card>
+                <mat-card-title>Invoice Number : {{invoiceNumber}}</mat-card-title>
+                <mat-card-subtitle>DocumentSequence: {{r.DocumentSequence}}</mat-card-subtitle>
+                <mat-card-content>
                     <p><b>Description: </b>{{r.Description}}</p>
                     <p><b>InvoiceSource: </b>{{r.InvoiceSource}}</p>
                     <p><b>LegalEntity: </b>{{r.LegalEntity}}</p>
@@ -35,11 +38,10 @@
                     <p><b>InvoiceDate: </b>{{r.InvoiceDate}}</p>
                     <p><b>InvoiceCurrency: </b>{{r.InvoiceCurrency}}</p>
                     <p><b>DocumentCategory: </b>{{r.DocumentCategory}}</p>
-                    <footer class="blockquote-footer">Product by <cite title="Source Title">CTR</cite>
-                    </footer>
-                </blockquote>
-            </div>
+                </mat-card-content>
+                <mat-card-footer>Product by <cite title="Source Title">CTR</cite></mat-card-footer>
+            </mat-card>
+
         </div>
+        <br><br><br>
     </div>
-    <br><br><br>
-</div>
