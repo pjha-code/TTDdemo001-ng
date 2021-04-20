@@ -130,6 +130,6 @@ export class PatchInvoiceComponent implements OnDestroy {
     });
   }
   ngOnDestroy(): void {
-    this._subscription.unsubscribe();
+    this._subscription?.unsubscribe();
   }
 }
