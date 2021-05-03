@@ -71,7 +71,7 @@
             </h3>
 
             <div class="col-sm-12"
-                [style.display]="(validRecorList.length==0||invalidRecorList.length==0)&&displaySpinner?'block':'none'">
+                [style.display]="(validRecorList.length==0&&invalidRecorList.length==0)&&displaySpinner?'block':'none'">
                 <mat-spinner [color]="'warn'" class="my-mat-spinner"></mat-spinner>
             </div>
             <table class="table table-responsive" [hidden]="toggleSuccessTable">
