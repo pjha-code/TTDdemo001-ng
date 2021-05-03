@@ -33,6 +33,8 @@ export class PatchInvoiceComponent implements OnDestroy {
   private _validRecorList: any[] = [];
   private _invalidRecorList: any[] = [];
   private _displaySpinner = false;
+  private _toggleSuccessTable = true;
+  private _toggleErrorTable = true;
   private _subscription!: Subscription;
 
   form: FormGroup = new FormGroup({
@@ -69,6 +71,14 @@ export class PatchInvoiceComponent implements OnDestroy {
 
   get invalidRecorList() {
     return this._invalidRecorList;
+  }
+
+  get toggleSuccessTable() {
+    return this._toggleSuccessTable
+  }
+
+  get toggleErrorTable() {
+    return this._toggleErrorTable
   }
 
   get displaySpinner() {
@@ -129,7 +139,19 @@ export class PatchInvoiceComponent implements OnDestroy {
       }
     });
   }
+
   ngOnDestroy(): void {
     this._subscription?.unsubscribe();
+  }
+
+  toggleTable(id: String) {
+    if (id === 'e') {
+      this._toggleSuccessTable = true
+      this._toggleErrorTable = false
+    }
+    else {
+      this._toggleSuccessTable = false
+      this._toggleErrorTable = true
+    }
   }
 }

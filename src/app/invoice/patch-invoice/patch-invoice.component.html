@@ -31,7 +31,6 @@
                                     [disabled]="(!file?.errors?.valid)|| (!isFileSizeCorrect)" type="submit">
                                     Update
                                 </button>
-
                             </div>
 
                         </div>
@@ -56,13 +55,26 @@
 
         </div>
         <div class="col-sm-12 col-lg-8">
-            <h3 class="mat-h2 mat-title">Response:</h3>
+            <h3 class="mat-h2 mat-title">
+                Response:
+                <button type="button" class="btn btn-sm btn-outline-success" [disabled]="validRecorList.length==0"
+                    (click)="toggleTable('s')">
+                    Success <span class="badge badge-light">{{validRecorList.length}}</span>
+                    <span class="sr-only">unread messages</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger" [disabled]="invalidRecorList.length==0"
+                    (click)="toggleTable('e')">
+                    Error <span class="badge badge-light">{{invalidRecorList.length}}</span>
+                    <span class="sr-only">unread messages</span>
+                </button>
+
+            </h3>
 
             <div class="col-sm-12"
                 [style.display]="(validRecorList.length==0||invalidRecorList.length==0)&&displaySpinner?'block':'none'">
                 <mat-spinner [color]="'warn'" class="my-mat-spinner"></mat-spinner>
             </div>
-            <table class="table table-responsive" [hidden]="validRecorList.length==0&&invalidRecorList.length==0">
+            <table class="table table-responsive" [hidden]="toggleSuccessTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -80,12 +92,19 @@
                             {{col}}
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive" [hidden]="toggleErrorTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Errors</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr *ngFor="let rows of invalidRecorList; index as i" class="table-danger">
-                        <th scope="row">
-                            {{i+1}}
-                        </th>
+
                         <td [attr.colspan]="headers.length">
-                            {{rows.response}}
+                            <b>{{i+1}}&emsp;</b> {{rows.response}}
                         </td>
                     </tr>
                 </tbody>
