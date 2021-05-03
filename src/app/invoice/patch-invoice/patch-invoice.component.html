@@ -57,6 +57,11 @@
         <div class="col-sm-12 col-lg-8">
             <h3 class="mat-h2 mat-title">
                 Response:
+                <button type="button" class="btn btn-sm btn-outline-dark" disabled style="border: white;">
+                    Total <span class="badge badge-light">{{invalidRecorList.length+validRecorList.length}}</span>
+                    <span class="sr-only">unread messages</span>
+                </button>
+
                 <button type="button" class="btn btn-sm btn-outline-success" [disabled]="validRecorList.length==0"
                     (click)="toggleTable('s')">
                     Success <span class="badge badge-light">{{validRecorList.length}}</span>
@@ -67,6 +72,7 @@
                     Error <span class="badge badge-light">{{invalidRecorList.length}}</span>
                     <span class="sr-only">unread messages</span>
                 </button>
+
 
             </h3>
 
